@@ -246,3 +246,19 @@ mysql> SELECT count(*) from address_book where type = 'Friends';
 +----------+
 1 row in set (0.00 sec)
 
+UC11 Ability to add person to both Friend and Family in addressbook.
+
+mysql> INSERT INTO address_book (firstname,lastname,name,type,address,city,state,zip,phonenumber,email) values('Darshan','Basale','Addressbook1','Friends','Supe','Baramati','Maharashtra','412204','9900785423','darshnD@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from address_book;
++-----------+----------+--------------+---------+---------+----------+-------------+--------+-------------+------------------------+
+| firstName | lastName | name         | type    | address | city     | state       | zip    | phoneNumber | email                  |
++-----------+----------+--------------+---------+---------+----------+-------------+--------+-------------+------------------------+
+| Omkar     | Mote     | AddressBook1 | Friends | Pandare | Baramati | Maharashtra | 412304 | 8756324185  | omkarm@gmail.com       |
+| Prasad    | Dhumal   | AddressBook2 | Family  | Kedgoan | Pune     | Maharashtra | 412204 | 9922563547  | prasadd@gmail.com      |
+| Arshjeet  | Barkade  | AddressBook1 | Friends | Supe    | Baramati | Maharashtra | 412204 | 7756096271  | arshjeetb@gmail.com    |
+| Abhishek  | Deshmukh | AddressBook2 | Family  | Supe    | Baramti  | Maharashtra | 412204 | 9822653415  | abhideshmukh@gmail.com |
+| Darshan   | Basale   | Addressbook1 | Friends | Supe    | Baramati | Maharashtra | 412204 | 9900785423  | darshnD@gmail.com      |
++-----------+----------+--------------+---------+---------+----------+-------------+--------+-------------+------------------------+
+5 rows in set (0.00 sec)
