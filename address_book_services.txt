@@ -181,3 +181,57 @@ mysql> SELECT city FROM address_book ORDER BY firstname;
 | Pune     |
 +----------+
 6 rows in set (0.01 sec)
+
+UC9 Ability to identify each Address Book with name and Type.
+
+mysql> Alter Table address_book
+    -> ADD name VARCHAR(150) AFTER lastName;
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> Alter Table address_book
+    -> ADD type VARCHAR(150) AFTER name;
+Query OK, 0 rows affected (0.11 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from address_book;
++-----------+----------+------+------+---------+----------+-------------+--------+-------------+------------------------+
+| firstName | lastName | name | type | address | city     | state       | zip    | phoneNumber | email                  |
++-----------+----------+------+------+---------+----------+-------------+--------+-------------+------------------------+
+| Omkar     | Mote     | NULL | NULL | Pandare | Baramati | Maharashtra | 412304 | 8756324185  | omkarm@gmail.com       |
+| Prasad    | Dhumal   | NULL | NULL | Kedgoan | Pune     | Maharashtra | 412204 | 9922563547  | prasadd@gmail.com      |
+| Arshjeet  | Barkade  | NULL | NULL | Supe    | Baramati | Maharashtra | 412204 | 7756096271  | arshjeetb@gmail.com    |
+| Abhishek  | Deshmukh | NULL | NULL | Supe    | Baramti  | Maharashtra | 412204 | 9822653415  | abhideshmukh@gmail.com |
++-----------+----------+------+------+---------+----------+-------------+--------+-------------+------------------------+
+4 rows in set (0.00 sec)
+
+mysql> update address_book set name ='AddressBook1' WHERE firstname ='Arshjeet' or firstname ='Omkar';
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> update address_book set name ='AddressBook2' WHERE firstname ='Abhishek';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update address_book set name ='AddressBook2' WHERE firstname ='Prasad';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update address_book set type ='Friends' WHERE firstname ='Arshjeet' or firstname ='Omkar';
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> update address_book set type ='Family' WHERE firstname ='Abhishek' or firstname ='Prasad';
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from address_book;
++-----------+----------+--------------+---------+---------+----------+-------------+--------+-------------+------------------------+
+| firstName | lastName | name         | type    | address | city     | state       | zip    | phoneNumber | email                  |
++-----------+----------+--------------+---------+---------+----------+-------------+--------+-------------+------------------------+
+| Omkar     | Mote     | AddressBook1 | Friends | Pandare | Baramati | Maharashtra | 412304 | 8756324185  | omkarm@gmail.com       |
+| Prasad    | Dhumal   | AddressBook2 | Family  | Kedgoan | Pune     | Maharashtra | 412204 | 9922563547  | prasadd@gmail.com      |
+| Arshjeet  | Barkade  | AddressBook1 | Friends | Supe    | Baramati | Maharashtra | 412204 | 7756096271  | arshjeetb@gmail.com    |
+| Abhishek  | Deshmukh | AddressBook2 | Family  | Supe    | Baramti  | Maharashtra | 412204 | 9822653415  | abhideshmukh@gmail.com |
++-----------+----------+--------------+---------+---------+----------+-------------+--------+-------------+------------------------+
+4 rows in set (0.00 sec)
