@@ -104,3 +104,20 @@ mysql> SELECT * FROM address_book;
 | Darshan   | Basale   | Supe    | Baramti  | Maharashtra | 412204 | 9985745142  | darshanb@gmail.com     |
 +-----------+----------+---------+----------+-------------+--------+-------------+------------------------+
 5 rows in set (0.00 sec)
+
+UC5 Delete Contact to addressbook.
+
+mysql> DELETE FROM address_book
+    -> Where firstName = 'Darshan';
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM address_book;
++-----------+----------+---------+----------+-------------+--------+-------------+------------------------+
+| firstName | lastName | address | city     | state       | zip    | phoneNumber | email                  |
++-----------+----------+---------+----------+-------------+--------+-------------+------------------------+
+| Omkar     | Mote     | Pandare | Baramati | Maharashtra | 412304 | 8756324185  | omkarm@gmail.com       |
+| Prasad    | Dhumal   | Kedgoan | Pune     | Maharashtra | 412204 | 9922563547  | prasadd@gmail.com      |
+| Arshjeet  | Barkade  | Supe    | Baramati | Maharashtra | 412204 | 7756096271  | arshjeetb@gmail.com    |
+| Abhishek  | Deshmukh | Supe    | Baramti  | Maharashtra | 412204 | 9822653415  | abhideshmukh@gmail.com |
++-----------+----------+---------+----------+-------------+--------+-------------+------------------------+
+4 rows in set (0.00 sec)
