@@ -85,7 +85,22 @@ mysql> SELECT * FROM address_book;
 +-----------+----------+---------+----------+-------------+--------+-------------+------------------------+
 5 rows in set (0.00 sec)
 
+UC4 Edit Contact to addressbook.
 
+mysql> UPDATE address_book
+    -> SET city = 'Pune',address='Kedgoan'
+    -> WHERE firstName = 'Prasad';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
 
-
-
+mysql> SELECT * FROM address_book;
++-----------+----------+---------+----------+-------------+--------+-------------+------------------------+
+| firstName | lastName | address | city     | state       | zip    | phoneNumber | email                  |
++-----------+----------+---------+----------+-------------+--------+-------------+------------------------+
+| Omkar     | Mote     | Pandare | Baramati | Maharashtra | 412304 | 8756324185  | omkarm@gmail.com       |
+| Prasad    | Dhumal   | Kedgoan | Pune     | Maharashtra | 412204 | 9922563547  | prasadd@gmail.com      |
+| Arshjeet  | Barkade  | Supe    | Baramati | Maharashtra | 412204 | 7756096271  | arshjeetb@gmail.com    |
+| Abhishek  | Deshmukh | Supe    | Baramti  | Maharashtra | 412204 | 9822653415  | abhideshmukh@gmail.com |
+| Darshan   | Basale   | Supe    | Baramti  | Maharashtra | 412204 | 9985745142  | darshanb@gmail.com     |
++-----------+----------+---------+----------+-------------+--------+-------------+------------------------+
+5 rows in set (0.00 sec)
