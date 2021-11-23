@@ -1,0 +1,370 @@
+UC12 Apply 1NF on Normalization first add employee_id.
+
+mysql> ALTER TABLE address_book add employee_id numeric null after lastName;
+Query OK, 0 rows affected (0.11 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from address_book;
++-----------+----------+-------------+--------------+---------+---------+----------+-------------+--------+-------------+------------------------+
+| firstName | lastName | employee_id | name         | type    | address | city     | state       | zip    | phoneNumber | email                  |
++-----------+----------+-------------+--------------+---------+---------+----------+-------------+--------+-------------+------------------------+
+| Omkar     | Mote     |        NULL | AddressBook1 | Friends | Pandare | Baramati | Maharashtra | 412304 | 8756324185  | omkarm@gmail.com       |
+| Prasad    | Dhumal   |        NULL | AddressBook2 | Family  | Kedgoan | Pune     | Maharashtra | 412204 | 9922563547  | prasadd@gmail.com      |
+| Arshjeet  | Barkade  |        NULL | AddressBook1 | Friends | Supe    | Baramati | Maharashtra | 412204 | 7756096271  | arshjeetb@gmail.com    |
+| Abhishek  | Deshmukh |        NULL | AddressBook2 | Family  | Supe    | Baramti  | Maharashtra | 412204 | 9822653415  | abhideshmukh@gmail.com |
+| Darshan   | Basale   |        NULL | Addressbook1 | Friends | Supe    | Baramati | Maharashtra | 412204 | 9900785423  | darshnD@gmail.com      |
++-----------+----------+-------------+--------------+---------+---------+----------+-------------+--------+-------------+------------------------+
+5 rows in set (0.00 sec)
+
+mysql> update address_book set employee_id = 21 where firstname = 'Arshjeet';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update address_book set employee_id = 22 where firstname = 'Abhishek';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update address_book set employee_id = 23 where firstname = 'Darshan';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update address_book set employee_id = 24 where firstname = 'Prasad';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update address_book set employee_id = 25 where firstname = 'Omkar';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from address_book;
++-----------+----------+-------------+--------------+---------+---------+----------+-------------+--------+-------------+------------------------+
+| firstName | lastName | employee_id | name         | type    | address | city     | state       | zip    | phoneNumber | email                  |
++-----------+----------+-------------+--------------+---------+---------+----------+-------------+--------+-------------+------------------------+
+| Omkar     | Mote     |          25 | AddressBook1 | Friends | Pandare | Baramati | Maharashtra | 412304 | 8756324185  | omkarm@gmail.com       |
+| Prasad    | Dhumal   |          24 | AddressBook2 | Family  | Kedgoan | Pune     | Maharashtra | 412204 | 9922563547  | prasadd@gmail.com      |
+| Arshjeet  | Barkade  |          21 | AddressBook1 | Friends | Supe    | Baramati | Maharashtra | 412204 | 7756096271  | arshjeetb@gmail.com    |
+| Abhishek  | Deshmukh |          22 | AddressBook2 | Family  | Supe    | Baramti  | Maharashtra | 412204 | 9822653415  | abhideshmukh@gmail.com |
+| Darshan   | Basale   |          23 | Addressbook1 | Friends | Supe    | Baramati | Maharashtra | 412204 | 9900785423  | darshnD@gmail.com      |
++-----------+----------+-------------+--------------+---------+---------+----------+-------------+--------+-------------+------------------------+
+5 rows in set (0.00 sec)
+
+mysql> insert into address_book(firstname,lastname,employee_id,name,type,address,city,state,zip,phonenumber,email) values('Arshjeet','Barkade',11,'Addressbook1','Friends','Supe','Pune','Maharashtra','412204','7751225643','arshjeetb08@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from address_book;
++-----------+----------+-------------+--------------+---------+---------+----------+-------------+--------+-------------+------------------------+
+| firstName | lastName | employee_id | name         | type    | address | city     | state       | zip    | phoneNumber | email                  |
++-----------+----------+-------------+--------------+---------+---------+----------+-------------+--------+-------------+------------------------+
+| Omkar     | Mote     |          25 | AddressBook1 | Friends | Pandare | Baramati | Maharashtra | 412304 | 8756324185  | omkarm@gmail.com       |
+| Prasad    | Dhumal   |          24 | AddressBook2 | Family  | Kedgoan | Pune     | Maharashtra | 412204 | 9922563547  | prasadd@gmail.com      |
+| Arshjeet  | Barkade  |          21 | AddressBook1 | Friends | Supe    | Baramati | Maharashtra | 412204 | 7756096271  | arshjeetb@gmail.com    |
+| Abhishek  | Deshmukh |          22 | AddressBook2 | Family  | Supe    | Baramti  | Maharashtra | 412204 | 9822653415  | abhideshmukh@gmail.com |
+| Darshan   | Basale   |          23 | Addressbook1 | Friends | Supe    | Baramati | Maharashtra | 412204 | 9900785423  | darshnD@gmail.com      |
+| Arshjeet  | Barkade  |          11 | Addressbook1 | Friends | Supe    | Pune     | Maharashtra | 412204 | 7751225643  | arshjeetb08@gmail.com  |
++-----------+----------+-------------+--------------+---------+---------+----------+-------------+--------+-------------+------------------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from address_book where employee_id = 21;
++-----------+----------+-------------+--------------+---------+---------+----------+-------------+--------+-------------+---------------------+
+| firstName | lastName | employee_id | name         | type    | address | city     | state       | zip    | phoneNumber | email               |
++-----------+----------+-------------+--------------+---------+---------+----------+-------------+--------+-------------+---------------------+
+| Arshjeet  | Barkade  |          21 | AddressBook1 | Friends | Supe    | Baramati | Maharashtra | 412204 | 7756096271  | arshjeetb@gmail.com |
++-----------+----------+-------------+--------------+---------+---------+----------+-------------+--------+-------------+---------------------+
+1 row in set (0.00 sec)
+
+mysql> Update address_book
+    -> SET employee_id = 21
+    -> WHERE email = 'arshjeetb08@gmail.com';
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from address_book;
++-----------+----------+-------------+--------------+---------+---------+----------+-------------+--------+-------------+------------------------+
+| firstName | lastName | employee_id | name         | type    | address | city     | state       | zip    | phoneNumber | email                  |
++-----------+----------+-------------+--------------+---------+---------+----------+-------------+--------+-------------+------------------------+
+| Omkar     | Mote     |          25 | AddressBook1 | Friends | Pandare | Baramati | Maharashtra | 412304 | 8756324185  | omkarm@gmail.com       |
+| Prasad    | Dhumal   |          24 | AddressBook2 | Family  | Kedgoan | Pune     | Maharashtra | 412204 | 9922563547  | prasadd@gmail.com      |
+| Arshjeet  | Barkade  |          21 | AddressBook1 | Friends | Supe    | Baramati | Maharashtra | 412204 | 7756096271  | arshjeetb@gmail.com    |
+| Abhishek  | Deshmukh |          22 | AddressBook2 | Family  | Supe    | Baramti  | Maharashtra | 412204 | 9822653415  | abhideshmukh@gmail.com |
+| Darshan   | Basale   |          23 | Addressbook1 | Friends | Supe    | Baramati | Maharashtra | 412204 | 9900785423  | darshnD@gmail.com      |
+| Arshjeet  | Barkade  |          21 | Addressbook1 | Friends | Supe    | Pune     | Maharashtra | 412204 | 7751225643  | arshjeetb08@gmail.com  |
++-----------+----------+-------------+--------------+---------+---------+----------+-------------+--------+-------------+------------------------+
+6 rows in set (0.00 sec)
+
+mysql> select * from address_book where employee_id = 21;
++-----------+----------+-------------+--------------+---------+---------+----------+-------------+--------+-------------+-----------------------+
+| firstName | lastName | employee_id | name         | type    | address | city     | state       | zip    | phoneNumber | email                 |
++-----------+----------+-------------+--------------+---------+---------+----------+-------------+--------+-------------+-----------------------+
+| Arshjeet  | Barkade  |          21 | AddressBook1 | Friends | Supe    | Baramati | Maharashtra | 412204 | 7756096271  | arshjeetb@gmail.com   |
+| Arshjeet  | Barkade  |          21 | Addressbook1 | Friends | Supe    | Pune     | Maharashtra | 412204 | 7751225643  | arshjeetb08@gmail.com |
++-----------+----------+-------------+--------------+---------+---------+----------+-------------+--------+-------------+-----------------------+
+2 rows in set (0.00 sec)
+
+
+UC12 Apply 2NF on Normalization in addresssbook.
+
+
+mysql> create table person_details
+    -> (
+    -> person_id int not null auto_increment primary key,
+    -> city varchar(150) not null,
+    -> state varchar(150) not null,
+    -> email varchar(150) not null
+    -> );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> show tables;
++---------------------------------+
+| Tables_in_address_book_services |
++---------------------------------+
+| address_book                    |
+| person_details                  |
++---------------------------------+
+2 rows in set (0.01 sec)
+
+mysql> alter table person_details add column address varchar(150) not null;
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe person_details;
++-----------+--------------+------+-----+---------+----------------+
+| Field     | Type         | Null | Key | Default | Extra          |
++-----------+--------------+------+-----+---------+----------------+
+| person_id | int          | NO   | PRI | NULL    | auto_increment |
+| city      | varchar(150) | NO   |     | NULL    |                |
+| state     | varchar(150) | NO   |     | NULL    |                |
+| email     | varchar(150) | NO   |     | NULL    |                |
+| address   | varchar(150) | NO   |     | NULL    |                |
++-----------+--------------+------+-----+---------+----------------+
+5 rows in set (0.01 sec)
+
+mysql> insert into person_details(city,state,email,address) values('Pune','Maharashtra','arshjeetb@gmail.com','Supe');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into person_details(city,state,email,address) values('Shirur','Maharashtra','abhishekb@gmail.com','Daund');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> insert into person_details(city,state,email,address) values('Daund','Maharashtra','prasadd@gmail.com','Khor');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into person_details(city,state,email,address) values('Baramati','Maharashtra','darshand@gmail.com','Murti');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into person_details(city,state,email,address) values('Baramati','Maharashtra','omkarm@gmail.com','Supe');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from person_details;
++-----------+----------+-------------+---------------------+---------+
+| person_id | city     | state       | email               | address |
++-----------+----------+-------------+---------------------+---------+
+|         1 | Pune     | Maharashtra | arshjeetb@gmail.com | Supe    |
+|         2 | Shirur   | Maharashtra | abhishekb@gmail.com | Daund   |
+|         3 | Daund    | Maharashtra | prasadd@gmail.com   | Khor    |
+|         4 | Baramati | Maharashtra | darshand@gmail.com  | Murti   |
+|         5 | Baramati | Maharashtra | omkarm@gmail.com    | Supe    |
++-----------+----------+-------------+---------------------+---------+
+5 rows in set (0.00 sec)
+
+mysql> create table person_mobile_number
+    -> (
+    -> mob_number_id int not null auto_increment primary key,
+    -> mob_number varchar(50) not null,
+    -> person_id int,
+    -> foreign key (person_id) references person_details(person_id)
+    -> );
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> insert into person_mobile_number(mob_number,person_id) values ('7744918893',1),('9876545732',2),('9912345332',3),('7204842313',1),('7897862313',5),('8844312342',4),('9988443321',2);
+Query OK, 7 rows affected (0.01 sec)
+Records: 7  Duplicates: 0  Warnings: 0
+
+mysql> create table addressbook_name
+    -> (
+    -> addressbook_id int not null auto_increment primary key,
+    -> addressbook varchar(150) not null
+    -> );
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> insert into addressbook_name(addressbook) values('addressbook1'),('addressbook2'),('addressbook3'),('addressbook4');
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from addressbook_name;
++----------------+--------------+
+| addressbook_id | addressbook  |
++----------------+--------------+
+|              1 | addressbook1 |
+|              2 | addressbook2 |
+|              3 | addressbook3 |
+|              4 | addressbook4 |
++----------------+--------------+
+4 rows in set (0.00 sec)
+
+mysql> show tables;
++---------------------------------+
+| Tables_in_address_book_services |
++---------------------------------+
+| address_book                    |
+| addressbook_name                |
+| person_details                  |
+| person_mobile_number            |
++---------------------------------+
+4 rows in set (0.03 sec)
+
+mysql> create table person_data
+    -> (
+    -> persondata_id int not null auto_increment primary key,
+    -> firstname varchar(150) not null,
+    -> lastname varchar(150) not null,
+    -> Relation_type varchar(50) not null,
+    -> mob_number_id int,
+    -> foreign key(mob_number_id) references person_mobile_number(mob_number_id),
+    -> person_id int,
+    -> foreign key(person_id) references person_details(person_id)
+    -> );
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> describe person_data;
++---------------+--------------+------+-----+---------+----------------+
+| Field         | Type         | Null | Key | Default | Extra          |
++---------------+--------------+------+-----+---------+----------------+
+| persondata_id | int          | NO   | PRI | NULL    | auto_increment |
+| firstname     | varchar(150) | NO   |     | NULL    |                |
+| lastname      | varchar(150) | NO   |     | NULL    |                |
+| Relation_type | varchar(50)  | NO   |     | NULL    |                |
+| mob_number_id | int          | YES  | MUL | NULL    |                |
+| person_id     | int          | YES  | MUL | NULL    |                |
++---------------+--------------+------+-----+---------+----------------+
+6 rows in set (0.01 sec)
+
+mysql> insert into person_data(firstname,lastname,relation_type,mob_number_id,person_id) values('Arshjeet','Barkade','Family',1,1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into person_data(firstname,lastname,relation_type,mob_number_id,person_id) values('Prasad','Dhumal','Friend',2,2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into person_data(firstname,lastname,relation_type,mob_number_id,person_id) values('Darshan','Basale','Family',4,1);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into person_data(firstname,lastname,relation_type,mob_number_id,person_id) values('Omkar','Mote','Friend',5,2);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into person_data(firstname,lastname,relation_type,mob_number_id,person_id) values('Abhishek','Deshmukh','Professional',6,3);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from person_data;
++---------------+-----------+----------+---------------+---------------+-----------+
+| persondata_id | firstname | lastname | Relation_type | mob_number_id | person_id |
++---------------+-----------+----------+---------------+---------------+-----------+
+|             1 | Arshjeet  | Barkade  | Family        |             1 |         1 |
+|             2 | Prasad    | Dhumal   | Friend        |             2 |         2 |
+|             3 | Darshan   | Basale   | Family        |             4 |         1 |
+|             4 | Omkar     | Mote     | Friend        |             5 |         2 |
+|             5 | Abhishek  | Deshmukh | Professional  |             6 |         3 |
++---------------+-----------+----------+---------------+---------------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> create table addressbook_has_person
+    -> (
+    -> address_id int not null auto_increment primary key,
+    -> person_id int,
+    -> foreign key(person_id) references person_details(person_id),
+    -> addressbook_id int,
+    -> foreign key(addressbook_id) references addressbook_name(addressbook_id)
+    -> );
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> insert into addressbook_has_person(person_id,addressbook_id) values(1,1),(2,2),(3,3),(4,4),(5,1);
+Query OK, 5 rows affected (0.01 sec)
+Records: 5  Duplicates: 0  Warnings: 0
+
+mysql> select * from addressbook_has_person;
++------------+-----------+----------------+
+| address_id | person_id | addressbook_id |
++------------+-----------+----------------+
+|          1 |         1 |              1 |
+|          2 |         2 |              2 |
+|          3 |         3 |              3 |
+|          4 |         4 |              4 |
+|          5 |         5 |              1 |
++------------+-----------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> select person_data.firstname,person_data.lastname,person_data.Relation_type,person_details.city,person_details.state,person_details.email,person_details.address,addressbook_name.addressbook from person_data inner join person_mobile_number on person_data.mob_number_id = person_mobile_number.mob_number_id
+    -> inner join person_details on person_details.person_id = person_mobile_number.mob_number_id
+    -> inner join addressbook_name on addressbook_name.addressbook_id = person_details.person_id;
++-----------+----------+---------------+----------+-------------+---------------------+---------+--------------+
+| firstname | lastname | Relation_type | city     | state       | email               | address | addressbook  |
++-----------+----------+---------------+----------+-------------+---------------------+---------+--------------+
+| Arshjeet  | Barkade  | Family        | Pune     | Maharashtra | arshjeetb@gmail.com | Supe    | addressbook1 |
+| Prasad    | Dhumal   | Friend        | Shirur   | Maharashtra | abhishekb@gmail.com | Daund   | addressbook2 |
+| Darshan   | Basale   | Family        | Baramati | Maharashtra | darshand@gmail.com  | Murti   | addressbook4 |
++-----------+----------+---------------+----------+-------------+---------------------+---------+--------------+
+3 rows in set (0.01 sec)
+
+
+UC13 Ensure all retrieve queries done especially in UC 6, UC 7, UC 8 and UC 10 are working with new table structure in addressbook.
+
+UC6-
+
+mysql> select person_data.firstname,person_data.lastname,person_data.Relation_type,person_details.city,person_details.state,person_details.email,person_details.address,person_mobile_number.mob_number,addressbook_name.addressbook from person_data inner join person_mobile_number on person_data.mob_number_id = person_mobile_number.mob_number_id
+    -> inner join person_details on person_details.person_id = person_mobile_number.mob_number_id
+    -> inner join addressbook_name on addressbook_name.addressbook_id = person_details.person_id
+    -> where person_details.city ='Baramati' or person_details.state ='Maharashtra';
++-----------+----------+---------------+----------+-------------+---------------------+---------+------------+--------------+
+| firstname | lastname | Relation_type | city     | state       | email               | address | mob_number | addressbook  |
++-----------+----------+---------------+----------+-------------+---------------------+---------+------------+--------------+
+| Arshjeet  | Barkade  | Family        | Pune     | Maharashtra | arshjeetb@gmail.com | Supe    | 7744918893 | addressbook1 |
+| Prasad    | Dhumal   | Friend        | Shirur   | Maharashtra | abhishekb@gmail.com | Daund   | 9876545732 | addressbook2 |
+| Darshan   | Basale   | Family        | Baramati | Maharashtra | darshand@gmail.com  | Murti   | 7204842313 | addressbook4 |
++-----------+----------+---------------+----------+-------------+---------------------+---------+------------+--------------+
+3 rows in set (0.09 sec)
+
+UC7-
+
+mysql> select person_details.state,count(person_details.state) from person_details inner join person_data on person_details.person_id = person_data.persondata_id
+    -> group by person_details.state;
++-------------+-----------------------------+
+| state       | count(person_details.state) |
++-------------+-----------------------------+
+| Maharashtra |                           5 |
++-------------+-----------------------------+
+1 row in set (0.01 sec)
+
+mysql> select person_details.city,count(person_details.city) from person_details inner join person_data on person_details.person_id = person_data.persondata_id
+    -> group by person_details.city;
++----------+----------------------------+
+| city     | count(person_details.city) |
++----------+----------------------------+
+| Pune     |                          1 |
+| Shirur   |                          1 |
+| Daund    |                          1 |
+| Baramati |                          2 |
++----------+----------------------------+
+4 rows in set (0.00 sec)
+
+UC8-
+
+mysql> select person_data.firstname,person_data.lastname,person_data.Relation_type,person_details.city,person_details.state,person_details.email,person_details.address,person_mobile_number.mob_number,addressbook_name.addressbook from person_data inner join person_mobile_number on person_data.mob_number_id = person_mobile_number.mob_number_id
+    -> inner join person_details on person_details.person_id = person_mobile_number.mob_number_id
+    -> inner join addressbook_name on addressbook_name.addressbook_id = person_details.person_id
+    -> where person_details.city = 'Pune' order by person_data.firstname;
++-----------+----------+---------------+------+-------------+---------------------+---------+------------+--------------+
+| firstname | lastname | Relation_type | city | state       | email               | address | mob_number | addressbook  |
++-----------+----------+---------------+------+-------------+---------------------+---------+------------+--------------+
+| Arshjeet  | Barkade  | Family        | Pune | Maharashtra | arshjeetb@gmail.com | Supe    | 7744918893 | addressbook1 |
++-----------+----------+---------------+------+-------------+---------------------+---------+------------+--------------+
+1 row in set (0.00 sec)
+
+UC10-
+
+mysql> select person_data.Relation_type,count(person_data.Relation_type) from person_data inner join person_details on person_data.persondata_id = person_details.person_id
+    ->  group by person_data.Relation_type;
++---------------+----------------------------------+
+| Relation_type | count(person_data.Relation_type) |
++---------------+----------------------------------+
+| Family        |                                2 |
+| Friend        |                                2 |
+| Professional  |                                1 |
++---------------+----------------------------------+
+3 rows in set (0.00 sec)
